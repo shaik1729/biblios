@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents or /documents.json
   def index
-    @documents = Document.all
+    @documents = Document.where(user_id: current_user.id)
   end
 
   # GET /documents/1 or /documents/1.json
@@ -26,7 +26,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to document_url(@document), notice: "Document was successfully created." }
+        format.html { redirect_to documents_path, notice: "Document was successfully created." }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to document_url(@document), notice: "Document was successfully updated." }
+        format.html { redirect_to documents_path, notice: "Document was successfully updated." }
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -56,6 +56,10 @@ class DocumentsController < ApplicationController
       format.html { redirect_to documents_url, notice: "Document was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    @documents = Document.where("title LIKE ?", "%#{params[:title]}%")
   end
 
   private

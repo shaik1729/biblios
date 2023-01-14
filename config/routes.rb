@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :documents
+  resources :documents, except: [:edit, :update, :destroy] do
+    
+    collection do
+      get :search
+    end
+
+  end
   get 'home/index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
