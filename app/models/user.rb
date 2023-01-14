@@ -6,4 +6,5 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable
   
   belongs_to :role
+  has_many :documents
 end
