@@ -11,19 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="field mb-4">
+    <%= form.label :title, class: 'form-field' %>
+    <%= form.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="field mb-4">
+    <%= form.label :content, class: 'form-field' %>
+    <%= form.text_area :content, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :file %>
-    <%= form.file_field :file, direct_upload: true, accept: 'application/pdf, application/zip' %>
+  <div class="field mb-4">
+    <%= form.label :file, class: 'form-field' %>
+    <%= form.file_field :file, direct_upload: true, accept: 'application/pdf, application/zip', class: 'form-control' %>
   </div>
   
   <div class="field d-none">
@@ -32,6 +32,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Upload Document', class: 'btn btn-success' %>
   </div>
 <% end %>

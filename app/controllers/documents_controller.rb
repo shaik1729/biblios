@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents or /documents.json
   def index
-    @documents = Document.where(user_id: current_user.id)
+    @documents = Document.where(user_id: current_user.id).order("id DESC")
   end
 
   # GET /documents/1 or /documents/1.json
@@ -59,7 +59,7 @@ class DocumentsController < ApplicationController
   end
 
   def search
-    @documents = Document.where("title LIKE ?", "%#{params[:title]}%")
+    @documents = Document.where("title LIKE ?", "%#{params[:title]}%").order("id DESC")
   end
 
   private
